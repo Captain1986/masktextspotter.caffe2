@@ -17,3 +17,5 @@ train/
 fonts
 evaluation
 .*
+
+*.jpg

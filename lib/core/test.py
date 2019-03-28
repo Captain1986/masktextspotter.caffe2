@@ -156,6 +156,8 @@ def im_detect_all(model, im, image_name, box_proposals, timers=None, vis=False):
             if vis:    
                 if cfg.TEST.OUTPUT_POLYGON:
                     cv2.polylines(im, [np.array(segms).reshape((-1,2)).astype(np.int32)], True, color=(0, 255, 0), thickness=5)
+                    print (image_name + '.jpg')
+                    cv2.imwrite(image_name + '.jpg' ,im);
                     # img_draw.polygon(segms, outline=(0, 255, 0))
                 else:
                     img_draw.polygon(pts, outline=(0, 255, 0))

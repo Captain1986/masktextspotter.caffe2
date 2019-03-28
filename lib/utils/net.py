@@ -27,6 +27,7 @@ import numpy as np
 import os
 import pprint
 import yaml
+import yamlloader
 
 from caffe2.python import core
 from caffe2.python import workspace
@@ -56,7 +57,7 @@ def initialize_gpu_0_from_weights_file(model, weights_file):
     with open(weights_file, 'r') as f:
         src_blobs = pickle.load(f)
     if 'cfg' in src_blobs:
-        saved_cfg = yaml.load(src_blobs['cfg'])
+        saved_cfg = yaml.load(src_blobs['cfg'], Loader=yamlloader.ordereddict.CLoader)
         configure_bbox_reg_weights(model, saved_cfg)
     if 'blobs' in src_blobs:
         # Backwards compat--dictionary used to be only blobs, now they are
